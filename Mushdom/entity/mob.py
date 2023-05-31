@@ -14,6 +14,7 @@ class Mob(pygame.sprite.Sprite):
         self.position_y = position_y
         self.radius = 10
         self.side = 1
+        self.surface.blit(self.image, (0, 0))
 
     def detect(self, object_pos_x, object_pos_y):
         self.object_pos_x = object_pos_x
@@ -21,3 +22,20 @@ class Mob(pygame.sprite.Sprite):
         if (self.object_pos_x ^ 2 + self.object_pos_y ^ 2) > self.radius ^ 2:
             print("detected")
 
+
+if __name__ == "__main__":
+    pos_x = 1
+    pos_y = 2
+    TestMushroom = Mob(pos_x, pos_y)
+    loop = True
+    clock = pygame.time.Clock()
+    screen = pygame.display.set_mode((720, 480))
+    pygame.display.init()
+    WHITE = (255, 255, 255)
+    while loop:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                loop = False
+        screen.fill(WHITE)
+        screen.blit(TestMushroom.surface, (pos_x, pos_y))
+        pygame.display.update()
