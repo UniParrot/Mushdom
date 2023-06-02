@@ -4,11 +4,11 @@ class Mushroom(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.surface = pygame.Surface((32, 32))
-        self.image = pygame.image.load("asset/mushroom.png")
+        self.body_image = pygame.image.load("asset/mushroom_body.gif")
+        self.leg_image = pygame.image.load("asset/mushroom_leg.gif")
         self.surface.set_colorkey(BLUE)
         self.surface.blit(self.image, (0, 0))
         self.side = None
-        self.
 
 
 if __name__ == "__main__":
