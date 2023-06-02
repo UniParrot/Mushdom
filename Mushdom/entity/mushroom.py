@@ -9,7 +9,7 @@ class Mushroom(pygame.sprite.Sprite):
         self.surface.set_colorkey(BLUE)
         self.surface.blit(self.image, (0, 0))
         self.side = None
-
+    
 
 if __name__ == "__main__":
     TestMushroom = Mushroom()

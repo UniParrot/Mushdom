@@ -1,5 +1,5 @@
 import pygame
-
+import mushroom
 class Mob(pygame.sprite.Sprite):
     def __init__(self, position_x, position_y):
         super().__init__()
@@ -21,7 +21,10 @@ class Mob(pygame.sprite.Sprite):
         self.object_pos_y = object_pos_y
         if (self.object_pos_x ^ 2 + self.object_pos_y ^ 2) > self.radius ^ 2:
             print("detected")
-
+        
+    def captured(self, capturer : mushroom.Mushroom):
+        self.capturer = capturer
+        
 
 if __name__ == "__main__":
     pos_x = 1
