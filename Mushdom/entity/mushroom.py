@@ -3,6 +3,7 @@ BLUE = (0, 0, 255)
 class Mushroom(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
+        self.screen_ = None
         self.ratio = 5
         self.image = pygame.image.load("asset/mushroom.png")
         self.width = self.image.get_width()
@@ -25,6 +26,10 @@ class Mushroom(pygame.sprite.Sprite):
                     self.rect.x -= 10
                 elif event_.key == pygame.K_RIGHT:
                     self.rect.x += 10
+
+    def draw(self, screen_ : pygame.Surface):
+        self.screen_ = screen_
+        self.screen_.blit(self.surface, (self.rect.x, self.rect.y))
 class Spore(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -44,6 +49,16 @@ if __name__ == "__main__":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 loop = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    TestMushroom.rect.y -= 10
+                elif event.key == pygame.K_DOWN:
+                    TestMushroom.rect.y += 10
+                elif event.key == pygame.K_LEFT:
+                    TestMushroom.rect.x -= 10
+                elif event.key == pygame.K_RIGHT:
+                    TestMushroom.rect.x += 10
+
         screen.fill(WHITE)
 
         TestMushroom.update()
