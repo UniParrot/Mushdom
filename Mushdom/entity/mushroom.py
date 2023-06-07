@@ -80,18 +80,19 @@ if __name__ == "__main__":
                     key_right = True
 
         if key_up:
-            TestMushroom.rect.y -= 10
+            TestMushroom.rect.y -= 2
         elif key_down:
-            TestMushroom.rect.y += 10
+            TestMushroom.rect.y += 2
         if key_up and key_down:
-            key_up, key_down = False
+            key_up = False
+            key_down = False
         if key_left:
-            TestMushroom.rect.x -= 10
+            TestMushroom.rect.x -= 2
         elif key_right:
-            TestMushroom.rect.x += 10
-        else:
-            TestMushroom.rect.y += 0
-            TestMushroom.rect.x += 0
+            TestMushroom.rect.x += 2
+        if key_right and key_left:
+            key_right = False
+            key_left = False
         screen.fill(WHITE)
         TestMushroomGroup.draw(screen)
         pygame.display.flip()
