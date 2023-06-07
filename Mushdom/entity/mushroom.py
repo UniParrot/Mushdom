@@ -1,40 +1,57 @@
 import pygame
 BLUE = (0, 0, 255)
+
+key_up = False
+key_down = False
+key_left = False
+key_right = False
+initial_accelerate_x = pygame.math.Vector2(5, 0)
+initial_accelerate_y = pygame.math.Vector2(0, 5)
+
+
 class Mushroom(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
+
         self.screen_ = None
         self.ratio = 5
         self.image = pygame.image.load("asset/mushroom.png")
+
         self.width = self.image.get_width()
         self.height = self.image.get_height()
         self.image = pygame.transform.scale(self.image, (self.width*self.ratio, self.height*self.ratio))
-        self.image.set_colorkey((0,255,0))
+        self.image.set_colorkey((0, 255, 0))
         self.surface = pygame.Surface((self.width*self.ratio, self.height*self.ratio))
         self.surface.blit(self.image, (0, 0))
         self.side = None
+
         self.rect = self.surface.get_rect()
+
 
     def update(self):
         for event_ in pygame.event.get():
             if event_.type == pygame.KEYDOWN:
                 if event_.key == pygame.K_UP:
-                    self.rect.y += 10
+                    self.velocity= pygame.math.Vector2((200, 200)) * 10
                 elif event_.key == pygame.K_DOWN:
-                    self.rect.y -= 10
+                    self.velocity-= 10
                 elif event_.key == pygame.K_LEFT:
-                    self.rect.x -= 10
+                    self.velocity -= 10
                 elif event_.key == pygame.K_RIGHT:
-                    self.rect.x += 10
-
+                    self.velocity += 10
+            self.position = self.position * self.velocity
     def draw(self, screen_ : pygame.Surface):
         self.screen_ = screen_
         self.screen_.blit(self.surface, (self.rect.x, self.rect.y))
+
+
 class Spore(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.surface = pygame.Surface((16, 16))
         self.surface.set_colorkey(BLUE)
+
+
 if __name__ == "__main__":
     TestMushroom = Mushroom()
     TestMushroomGroup = pygame.sprite.Group()
@@ -51,17 +68,31 @@ if __name__ == "__main__":
                 loop = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    TestMushroom.rect.y -= 10
+                    key_up = True
+
                 elif event.key == pygame.K_DOWN:
-                    TestMushroom.rect.y += 10
+                    key_down = True
+
                 elif event.key == pygame.K_LEFT:
-                    TestMushroom.rect.x -= 10
+                    key_left = True
+
                 elif event.key == pygame.K_RIGHT:
-                    TestMushroom.rect.x += 10
+                    key_right = True
 
+        if key_up:
+            TestMushroom.rect.y -= 10
+        elif key_down:
+            TestMushroom.rect.y += 10
+        if key_up and key_down:
+            key_up, key_down = False
+        if key_left:
+            TestMushroom.rect.x -= 10
+        elif key_right:
+            TestMushroom.rect.x += 10
+        else:
+            TestMushroom.rect.y += 0
+            TestMushroom.rect.x += 0
         screen.fill(WHITE)
-
-        TestMushroom.update()
         TestMushroomGroup.draw(screen)
         pygame.display.flip()
         pygame.display.update()

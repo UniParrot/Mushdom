@@ -3,6 +3,7 @@ import mushroom
 class Mob(pygame.sprite.Sprite):
     def __init__(self, position_x, position_y):
         super().__init__()
+        self.captured = None
         self.object_pos_x = None
         self.object_pos_y = None
         self.image_path = "asset/rabbit.gif" #default image, can be modified
@@ -22,8 +23,8 @@ class Mob(pygame.sprite.Sprite):
         if (self.object_pos_x ^ 2 + self.object_pos_y ^ 2) > self.radius ^ 2:
             print("detected")
         
-    def captured(self, capturer : mushroom.Mushroom):
-        self.capturer = capturer
+    def captured(self, captured : mushroom.Mushroom):
+        self.captured = captured
         
 
 if __name__ == "__main__":
