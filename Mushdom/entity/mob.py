@@ -36,9 +36,7 @@ class Mob(pygame.sprite.Sprite):
 
 
 if __name__ == "__main__":
-    pos_x = 1
-    pos_y = 2
-    TestMushroom = Mob(pos_x, pos_y)
+    TestMob = Mob(0, 0)
     loop = True
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode((720, 480))
@@ -49,5 +47,6 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 loop = False
         screen.fill(background_color)
-        screen.blit(TestMushroom.surface, (pos_x, pos_y))
+        screen.blit(TestMob.surface, (0, 0))
         pygame.display.update()
+        clock.tick(60)
