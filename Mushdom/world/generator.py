@@ -44,7 +44,5 @@ if __name__ == "__main__" :
                 loop = False
         screen.fill((255,255,255))
         tree_group = test_world.plant_tree()
-        if len(tree_group) >= 10 :
-            tree_group.kill()
         tree_group.draw(screen)
         pygame.display.update()
