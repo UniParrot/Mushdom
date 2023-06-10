@@ -15,19 +15,19 @@ class Tree(pygame.sprite.Sprite):
         self.rect = self.surface.get_rect()
 
 class World:
-    def __init__(self):
-        self.width = 500
-        self.height = 500
+    def __init__(self, world_width, world_height):
+        self.width = world_width
+        self.height = world_height
         self.tree_amount = 10
         self.random_distance = 0
         self.tree_group = pygame.sprite.Group()
         self.tree_test = None
-        self.random_distance_x = random.randint(0, 300)
-        self.random_distance_y = random.randint(0, 300)
+        self.random_distance_x = random.randint(0, self.width)
+        self.random_distance_y = random.randint(0, self.height)
     def plant_tree(self):
         for i in range(10):
-            self.random_distance_x = random.randint(0, 300)
-            self.random_distance_y = random.randint(0, 300)
+            self.random_distance_x = random.randint(0, self.width)
+            self.random_distance_y = random.randint(0, self.height)
             self.tree_test = Tree()
             self.tree_test.rect.x = self.random_distance_x
             self.tree_test.rect.y = self.random_distance_y
@@ -36,13 +36,14 @@ class World:
 
 if __name__ == "__main__" :
     loop = True
-    test_world = World()
+    test_world = World(1920, 1080)
     screen = pygame.display.set_mode((300, 300), pygame.RESIZABLE)
+    tree_group = test_world.plant_tree()
     while loop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 loop = False
         screen.fill((255,255,255))
-        tree_group = test_world.plant_tree()
+
         tree_group.draw(screen)
         pygame.display.update()
