@@ -5,8 +5,6 @@ key_up = False
 key_down = False
 key_left = False
 key_right = False
-initial_accelerate_x = pygame.math.Vector2(5, 0)
-initial_accelerate_y = pygame.math.Vector2(0, 5)
 
 
 class Mushroom(pygame.sprite.Sprite):
