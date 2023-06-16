@@ -49,7 +49,8 @@ def generate_area(world_width, world_height):
     world_height = int(world_height)
     area_width = math.gcd(world_width, world_height)
     area_height = math.gcd(world_width, world_height)
-    
+    area_width_amount = world_width / area_width
+    area_height_amount = world_height / area_height
 if __name__ == "__main__" :
     loop = True
     test_world = World(1920, 1080)
