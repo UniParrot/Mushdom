@@ -1,6 +1,6 @@
 import pygame
 import random
-
+import math
 class Tree(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -41,6 +41,14 @@ class Area(pygame.sprite.Sprite):
         self.width = None
         self.height = None
 def generate_area(world_width, world_height):
+    rect_point_upper_right = 0
+    rect_point_upper_left = 0
+    rect_point_bottom_right = 0
+    rect_point_upper_left = 0
+    world_width = int(world_width)
+    world_height = int(world_height)
+    area_width = math.gcd(world_width, world_height)
+    area_height = math.gcd(world_width, world_height)
     
 if __name__ == "__main__" :
     loop = True
