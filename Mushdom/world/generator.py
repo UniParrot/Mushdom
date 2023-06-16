@@ -33,7 +33,15 @@ class World:
             self.tree_test.rect.y = self.random_distance_y
             self.tree_group.add(self.tree_test)
         return self.tree_group
-
+class Area(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.mushroom = None
+        self.mob_count = None
+        self.width = None
+        self.height = None
+def generate_area(world_width, world_height):
+    
 if __name__ == "__main__" :
     loop = True
     test_world = World(1920, 1080)
