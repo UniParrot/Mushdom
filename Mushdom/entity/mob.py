@@ -24,6 +24,7 @@ class Mob(pygame.sprite.Sprite):
         self.surface.blit(self.image, (0, 0))
         self.surface.set_colorkey((0, 0, 255))
         self.rect = self.surface.get_rect()
+        self.skill_key = pygame.K_e
 
     def detect(self, object_pos_x, object_pos_y):
         self.object_pos_x = object_pos_x
@@ -36,6 +37,7 @@ class Mob(pygame.sprite.Sprite):
 
 
 if __name__ == "__main__":
+    MobGroup = pygame.sprite.Group()
     TestMob = Mob(0, 0)
     loop = True
     clock = pygame.time.Clock()
