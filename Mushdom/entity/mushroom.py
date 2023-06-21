@@ -35,6 +35,10 @@ class Mushroom(pygame.sprite.Sprite):
             self.surface.blit(self.image_front, (0, 0))
         elif self.image_side == "behind":
             self.surface.blit(self.image_behind, (0, 0))
+        elif self.image_side == "left":
+            self.surface.blit(self.image_left_normal, (0, 0))
+        elif self.image_side == "right":
+            self.surface.blit(self.image_right_normal, (0, 0))
 
 class Spore(pygame.sprite.Sprite):
     def __init__(self):
