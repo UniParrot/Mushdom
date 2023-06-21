@@ -13,43 +13,35 @@ class Mushroom(pygame.sprite.Sprite):
 
         self.screen_ = None
         self.ratio = 5
-        self.image = pygame.image.load("asset/mushroom.png")
-
+        self.image_front = pygame.image.load("asset/mushroom_front.png")
+        self.image_behind = pygame.image.load("asset/mushroom_behind.png")
+        self.image_left_normal = pygame.image.load("asset/mushroom_left.png")
+        self.image_right_normal = pygame.transform.flip(self.image_left_normal, False, True)
+        self.image_left_walk = pygame.image.load("asset/mushroom_left_walk.png")
+        self.image_right_walk = pygame.transform.flip(self.image_left_walk, False, True)
         self.width = self.image.get_width()
         self.height = self.image.get_height()
         self.image = pygame.transform.scale(self.image, (self.width*self.ratio, self.height*self.ratio))
         self.image.set_colorkey((0, 255, 0))
         self.surface = pygame.Surface((self.width*self.ratio, self.height*self.ratio))
-        self.surface.blit(self.image, (0, 0))
         self.side = None
-
         self.rect = self.surface.get_rect()
-
-
-    def update(self):
-        for event_ in pygame.event.get():
-            if event_.type == pygame.KEYDOWN:
-                if event_.key == pygame.K_UP:
-                    self.velocity = pygame.math.Vector2((200, 200)) * 10
-                elif event_.key == pygame.K_DOWN:
-                    self.velocity-= 10
-                elif event_.key == pygame.K_LEFT:
-                    self.velocity -= 10
-                elif event_.key == pygame.K_RIGHT:
-                    self.velocity += 10
-            self.position = self.position * self.velocity
-
-    def draw(self, screen_ : pygame.Surface):
-        self.screen_ = screen_
-        self.screen_.blit(self.surface, (self.rect.x, self.rect.y))
-
+        self.spore_count = 10
+        self.image_side = "front"
+        self.surface.blit(self.image_front, (0, 0))
+    def walking(self, direction):
+        self.image_side = direction
+        if self.image_side == "front":
+            self.surface.blit(self.image_front, (0, 0))
+        elif self.image_side == "behind":
+            self.surface.blit(self.image_behind, (0, 0))
 
 class Spore(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.surface = pygame.Surface((16, 16))
         self.surface.set_colorkey(BLUE)
-
+        
 
 if __name__ == "__main__":
     TestMushroom = Mushroom()
