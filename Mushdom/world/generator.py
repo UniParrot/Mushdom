@@ -139,7 +139,7 @@ if __name__ == "__main__":
     test_world = World(500, 600)
     screen = pygame.display.set_mode((500, 600))
 
-    area_list = generate_area(500, 600, 2)
+    area_list = generate_area(500, 600, 2, default_initial_pos)
     print("world_size: 500, 500")
     while loop:
         for event in pygame.event.get():
