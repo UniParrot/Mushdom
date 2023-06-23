@@ -73,23 +73,23 @@ if __name__ == "__main__":
                     TestMushroom.walking("front")
                 elif event.key == pygame.K_LEFT:
                     key_left = True
-
+                    TestMushroom.walking("left walk")
                 elif event.key == pygame.K_RIGHT:
                     key_right = True
-
+                    TestMushroom.walking("front walk")
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     key_up = False
-
+                    TestMushroom.walking("behind")
                 elif event.key == pygame.K_DOWN:
                     key_down = False
-
+                    TestMushroom.walking("front")
                 elif event.key == pygame.K_LEFT:
                     key_left = False
-
+                    TestMushroom.walking("left")
                 elif event.key == pygame.K_RIGHT:
                     key_right = False
-
+                    TestMushroom.walking("right")
         if key_up:
             TestMushroom.rect.y -= 5
         elif key_down:
