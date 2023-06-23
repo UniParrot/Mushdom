@@ -3,7 +3,7 @@ import random
 import math
 
 detected_area = None
-
+default_initial_pos = [[0, 0], [0, 0], [0, 0], [0, 0]]
 
 class Tree(pygame.sprite.Sprite):
     def __init__(self):
@@ -84,7 +84,7 @@ class Area(pygame.sprite.Sprite):
     def sides(self, mushroom):
         self.mushroom = mushroom
 
-def generate_area(world_width: int, world_height: int, ratio: int):
+def generate_area(world_width: int, world_height: int, ratio: int, inital_pos: list):
     rect_point_upper_right = [0, 0]
     rect_point_upper_left = [0, 0]
     rect_point_bottom_right = [0, 0]
@@ -100,7 +100,7 @@ def generate_area(world_width: int, world_height: int, ratio: int):
     area_height_amount = int(world_height / area_height)
     print("area_height_amount:", area_height_amount)
     area_list = pygame.sprite.Group()
-    area = [[0, 0], [0, 0], [0, 0], [0, 0]]
+    area = initial_pos
     rect_point_upper_right[0] += area_width
     print("rect_point_upper_right:", rect_point_upper_right)
     rect_point_bottom_left[1] += area_height
