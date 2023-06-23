@@ -18,6 +18,22 @@ class Tree(pygame.sprite.Sprite):
         self.surface.blit(self.image, (0, 0))
         self.rect = self.surface.get_rect()
 
+class CoreTree(pygame.sprie.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("asset/core_tree.png")
+        self.height = self.image.get_height()
+        self.width = self.image.get_width()
+        self.ratio = 3
+        self.image = pygame.transform.scale(self.image, (self.width * self.ratio, self.height * self.ratio))
+        self.surface = pygame.Surface((self.width * self.ratio, self.height * self.ratio))
+        self.surface.set_colorkey((0, 0, 0))
+        self.surface.blit(self.image, (0, 0))
+        self.rect = self.surface.get_rect()
+        self.mushroom = None
+    def infected(self, spore):
+        self.mushroom = sproe.mushroom
+
 
 class World:
 
@@ -64,7 +80,7 @@ class Area(pygame.sprite.Sprite):
         self.rect.bottomright = pos_list[3]
         self.mushroom = None
         print(self.color_palette)
-
+        self.core_tree = CoreTree()
     def sides(self, mushroom):
         self.mushroom = mushroom
 
