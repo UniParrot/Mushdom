@@ -29,7 +29,7 @@ class Mushroom(pygame.sprite.Sprite):
         self.spore_count = 10
         self.image_side = "front"
         self.surface.blit(self.image_front, (0, 0))
-    def walking(self, direction):
+    def walking(self, direction : string):
         self.image_side = direction
         if self.image_side == "front":
             self.surface.blit(self.image_front, (0, 0))
@@ -39,7 +39,10 @@ class Mushroom(pygame.sprite.Sprite):
             self.surface.blit(self.image_left_normal, (0, 0))
         elif self.image_side == "right":
             self.surface.blit(self.image_right_normal, (0, 0))
-
+        elif self.image_side == "right walk":
+            self.surface.blit(self.image_right_walk, (0, 0))
+        elif self.image_side == "left walk":
+            self.surface.blit(self.image_left_walk, (0, 0))
 class Spore(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -64,10 +67,10 @@ if __name__ == "__main__":
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     key_up = True
-
+                    TestMushroom.walking("behind")
                 elif event.key == pygame.K_DOWN:
                     key_down = True
-
+                    TestMushroom.walking("front")
                 elif event.key == pygame.K_LEFT:
                     key_left = True
 
